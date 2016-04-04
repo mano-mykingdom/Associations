@@ -1,0 +1,41 @@
+{
+  "name": "associations",
+  "version": "1.0.0",
+  "description": "ExtJS Data Packs - Associations.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Manojkumar <manoj.kumar@sencha.com>",
+  "contributors": [
+    "Vajrakumar <vajra@sencha.com>",
+    "Manojkumar <manoj.kumar@sencha.com>"
+  ],
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "bookshelf": "^0.9.2",
+    "express": "^4.13.4",
+    "knex": "^0.10.0",
+    "log4js": "^0.6.33",
+    "pg": "^4.5.1",
+    "serve-favicon": "^2.3.0",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mano-mykingdom/associations.git"
+  },
+  "keywords": [
+    "extjs",
+    "data-packs",
+    "associations"
+  ],
+  "bugs": {
+    "url": "https://github.com/mano-mykingdom/associations/issues"
+  },
+  "homepage": "https://github.com/mano-mykingdom/associations#readme"
+}
