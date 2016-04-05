@@ -84,7 +84,7 @@ app.use(favicon(__dirname + '/app/favicon.ico'));
 //route app path
 app.use('/', express.static(__dirname + "/app"));
 
-app.get('/data', function (req, res, next) {
+app.get('/states', function (req, res, next) {
     new States().fetch({
         withRelated: ['cities']
     }).then(function (model) {

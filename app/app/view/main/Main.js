@@ -3,7 +3,11 @@ Ext.define('Associations.view.main.Main', {
     xtype: 'app-main',
 
     requires: [
+        'Associations.store.Cities',
+        'Associations.store.States',
         'Associations.view.main.MainController',
+        'Ext.form.Panel',
+        'Ext.form.field.ComboBox',
         'Ext.layout.container.Form'
     ],
 
@@ -15,6 +19,25 @@ Ext.define('Associations.view.main.Main', {
         type: 'form'
     },
 
-    items: []
+    items: [{
+        xtype: 'combobox',
+        itemId: 'stateCmb',
+        fieldLabel: 'State',
+        displayField: 'name',
+        valueField: 'id',
+        store: {
+            type: 'states'
+        },
+        listeners: {
+            select: 'onSelectState'
+        }
+    }, {
+        xtype: 'combobox',
+        itemId: 'cityCmb',
+        fieldLabel: 'City',
+        displayField: 'name',
+        valueField: 'id',
+        queryMode: 'local'
+    }]
 
 });
