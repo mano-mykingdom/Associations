@@ -37,6 +37,7 @@ Ext.define('Associations.view.main.Main', {
         fieldLabel: 'City',
         displayField: 'name',
         valueField: 'id',
+        forceSelection: true,
         queryMode: 'local'
     }]
 
