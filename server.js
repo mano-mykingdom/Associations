@@ -46,14 +46,14 @@ var States = bookshelf.Collection.extend({
 });
 
 function success(req, res, next) {
-    var model = req.model;
-    if (!model) {
-        req.errorMessage = 'Requested resource not found.';
-        return next(new Error(req.errorMessage));
+    var responseData = res.responseData;
+    if (!responseData) {
+        res.errorMessage = 'Requested resource not found.';
+        return next(new Error(res.errorMessage));
     }
     res.json({
         success: true,
-        data: model.toJSON()
+        data: responseData
     });
 }
 
@@ -65,15 +65,14 @@ function error(err, req, res, next) {
     logger.debug('body', req.body);
     logger.error(err);
     logger.trace('********End********');
-    var response = {};
+    var responseData = {};
     if (config.enableErrorDescription) {
-        _.extend(response, {
-            errorCode: err.code,
-            errorMessage: err.message
+        _.extend(responseData, {
+            error: err
         });
     }
-    res.json(_.extend(response, {
-        message: req.errorMessage || 'We are sorry, error occured.',
+    res.json(_.extend(responseData, {
+        message: res.errorMessage || 'We are sorry, error occured.',
         success: false
     }));
 }
@@ -88,10 +87,10 @@ app.get('/states', function (req, res, next) {
     new States().fetch({
         withRelated: ['cities']
     }).then(function (model) {
-        req.model = model;
+        res.responseData = model.toJSON();
         next();
     }).catch(function (err) {
-        req.errorMessage = 'Failed to get data.';
+        res.errorMessage = 'Failed to get data.';
         next(err);
     });
 });
