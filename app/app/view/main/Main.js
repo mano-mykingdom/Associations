@@ -6,6 +6,7 @@ Ext.define('Associations.view.main.Main', {
         'Associations.store.States',
         'Associations.view.main.MainController',
         'Ext.form.Panel',
+        'Ext.form.field.Checkbox',
         'Ext.form.field.ComboBox',
         'Ext.layout.container.Form'
     ],
@@ -19,6 +20,11 @@ Ext.define('Associations.view.main.Main', {
     },
 
     items: [{
+        xtype: 'checkbox',
+        itemId: 'withRelatedChk',
+        fieldLabel: 'With Related?',
+        handler: 'onChangeWithRelation'
+    }, {
         xtype: 'combobox',
         itemId: 'stateCmb',
         fieldLabel: 'State',

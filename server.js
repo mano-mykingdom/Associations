@@ -67,7 +67,7 @@ function error(err, req, res, next) {
     logger.trace('********End********');
     var responseData = {};
     if (config.enableErrorDescription) {
-        _.extend(response, {
+        _.extend(responseData, {
             error: _.pick(err, ['code', 'file', 'line', 'message', 'severity', 'stack'])
         });
     }
@@ -85,7 +85,29 @@ app.use('/', express.static(__dirname + "/app"));
 
 app.get('/states', function (req, res, next) {
     new States().fetch({
-        withRelated: ['cities']
+        withRelated: req.query.withRelated === 'true' ? ['cities'] : null
+    }).then(function (model) {
+        res.responseData = model.toJSON();
+        next();
+    }).catch(function (err) {
+        res.errorMessage = 'Failed to get data.';
+        next(err);
+    });
+});
+
+app.get('/cities', function (req, res, next) {
+    var where = {},
+        filters;
+    if (req.query.filter) {
+        filters = JSON.parse(req.query.filter);
+    }
+    _.some(filters, function (filter) {
+        if (filter.property === 'state_id') {
+            where.state_id = filter.value;
+        }
+    });
+    new City().where(where).fetchAll({
+        require: true
     }).then(function (model) {
         res.responseData = model.toJSON();
         next();
