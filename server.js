@@ -15,7 +15,7 @@ log4js.configure({
         type: 'console'
     }, {
         type: 'file',
-        filename: logDirectory + '/ErrorHandling.log',
+        filename: logDirectory + '/access.log',
         maxLogSize: 1000000,
         backups: 10
     }]
@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-var logger = log4js.getLogger('ErrorHandling');
+var logger = log4js.getLogger();
 var knex = require('knex')(config.db);
 var bookshelf = require('bookshelf')(knex);
 
