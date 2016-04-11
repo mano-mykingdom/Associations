@@ -10,7 +10,20 @@ Ext.define('Associations.model.City', {
     }, {
         name: 'state_id',
         type: 'int',
-        reference: 'State'
+        reference: {
+            /**
+             * If the referenced entity has an ownership relationship reference.parent or
+             * reference.child should be specified instead.
+             * Note: Here City is child of State
+             */
+            parent: 'State',
+            /**
+             * By default, this is the pluralized name of this entity unless this reference is unique,
+             * in which case the default name is the singularized name of this entity.
+             * Note: Here the default value itself is 'cities' which is pluralized form of City
+             */
+            inverse: 'cities'
+        }
     }]
 
 });
