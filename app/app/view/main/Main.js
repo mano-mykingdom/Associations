@@ -3,7 +3,6 @@ Ext.define('Associations.view.main.Main', {
     xtype: 'app-main',
 
     requires: [
-        'Associations.store.Cities',
         'Associations.store.States',
         'Associations.view.main.MainController',
         'Ext.form.Panel',

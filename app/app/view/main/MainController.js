@@ -1,6 +1,10 @@
 Ext.define('Associations.view.main.MainController', {
     extend: 'Ext.app.ViewController',
 
+    requires: [
+        'Associations.store.Cities'
+    ],
+
     alias: 'controller.main',
 
     onSelectState: function (sender, record, event) {
