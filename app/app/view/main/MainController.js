@@ -2,9 +2,9 @@ Ext.define('Associations.view.main.MainController', {
     extend: 'Ext.app.ViewController',
 
     requires: [
-        'Associations.store.Cities'
+        'Associations.model.City'
     ],
-
+    
     alias: 'controller.main',
 
     onChangeWithRelation: function (sender, value) {

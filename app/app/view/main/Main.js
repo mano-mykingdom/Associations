@@ -3,7 +3,7 @@ Ext.define('Associations.view.main.Main', {
     xtype: 'app-main',
 
     requires: [
-        'Associations.store.States',
+        'Associations.model.State',
         'Associations.view.main.MainController',
         'Ext.form.Panel',
         'Ext.form.field.Checkbox',
@@ -31,7 +31,7 @@ Ext.define('Associations.view.main.Main', {
         displayField: 'name',
         valueField: 'id',
         store: {
-            type: 'states'
+            model: 'Associations.model.State'
         },
         listeners: {
             select: 'onSelectState'
