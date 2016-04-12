@@ -1,6 +1,3 @@
-Ext.util.Format.pluralize = function (value) {
-    return Ext.util.Inflector.pluralize(value);
-};
 /**
  * Created by manojkumar on 4/5/16.
  */
@@ -39,7 +36,7 @@ Ext.define('Associations.model.Base', {
          */
         proxy: {
             type: 'rest',
-            url: '/{entityName:pluralize}',
+            url: '/{entityName:series(["lowercase", "pluralize"])}',
             reader: {
                 type: 'json',
                 rootProperty: 'data'
